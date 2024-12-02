@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.scm.forms.UserForm;
+
 
 
 
@@ -55,8 +60,24 @@ public String login(Model model) {
 }
 @RequestMapping("/register")
 public String register(Model model) {
-    System.out.println("Register Page Handler");
+
+    UserForm userForm = new UserForm();
+
+    // writing default value
+    // userForm.setName("sukdhev");
+    // userForm.setAbout("hiwhi");
+    model.addAttribute("userForm", userForm);
+
+    // System.out.println("Register Page Handler");
     return "register";
 }
+
+    // processing register 
+    @RequestMapping(value = "/do-register", method=RequestMethod.POST)
+    public String processRegister() {
+        System.out.println("processing register");
+        return "redirect:/register";
+    }
+    
 
 }
